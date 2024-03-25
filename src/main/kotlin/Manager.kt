@@ -11,8 +11,11 @@ open class Manager<T : Item>(val itemName: String) {
         }
 
         val item = if (isNote) {
-            print("Введите текст заметки: ")
-            Note(input, readLine().orEmpty().trim())
+            var content: String
+            do { print("Введите текст заметки(не пустое содержание): ")
+                content = readLine().orEmpty().trim()
+            } while (content.isEmpty())
+            Note(input, content)
         } else {
             Archive(input)
         }
